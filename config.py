@@ -7,8 +7,7 @@ class Config():
 
     @staticmethod
     def init_app(app):
-    pass
-
+        pass
 
 class ProdConfig(Config):
     pass
@@ -16,7 +15,12 @@ class ProdConfig(Config):
 class DevConfig(Config):
     DEBUG = True
 
+
+class TestConfig(Config):
+    pass
+
 config_options = {
-    'production': ProdConfig,
-    'development': DevConfig
+    'production':ProdConfig,
+    'development':DevConfig,
+    'test':TestConfig
 }
