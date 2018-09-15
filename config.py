@@ -5,6 +5,7 @@ class Config():
     parent class config
     '''
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://bknngeno:123@localhost/pitches'
+    UPLOAD_PHOTOS_DEST ='app/static/photos'
     @staticmethod
     def init_app(app):
         pass
