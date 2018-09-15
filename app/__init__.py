@@ -2,10 +2,11 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from config import config_options
 from flask_simplemde import SimpleMDE
-
+from flask_sqlalchemy import SQLAlchemy
 
 bootstrap = Bootstrap()
 simplemde = SimpleMDE()
+db = SQLAlchemy()
 
 
 def create_app(config_name):
@@ -19,6 +20,8 @@ def create_app(config_name):
      #initializing the flask extensions
     bootstrap.init_app(app)
     simplemde.init_app(app)
+    db.init_app(app)
+
 
     #Registering the bluprint
     from .main import main as main_blueprint

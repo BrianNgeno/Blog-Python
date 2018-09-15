@@ -4,7 +4,7 @@ class Config():
     '''
     parent class config
     '''
-
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://bknngeno:123@localhost/pitches'
     @staticmethod
     def init_app(app):
         pass
