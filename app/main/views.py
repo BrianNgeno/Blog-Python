@@ -12,7 +12,7 @@ def index():
     '''
     title = 'Home - Welcome to The Best Blog Site Worldwide You Think of It We help share It.'
 
-    return render_template('index.html',title=title)
+    return render_template('index.html',title = title)
 
 @main.route('/user/<uname>')
 def profile(uname):
