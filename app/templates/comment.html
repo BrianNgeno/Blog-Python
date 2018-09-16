@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="row">
+    <div class="col-md-2"></div>
 {% for comment in comment %}
 <div class="jumbotron col-md-8">
   <p>{{comment.user}}</p>
@@ -9,6 +11,7 @@
   <p>Pitch-Id: {{comment.pitches_id}}</p>
  
 </div>
-
 {% endfor %}
+<div class="col-md-2"></div>
+</div>
 {% endblock %}

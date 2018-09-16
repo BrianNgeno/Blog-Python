@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from ..models import User, Blog, Role, Comments
 from . import main
-from flask_login import login_required
+from flask_login import login_required,current_user
 from .forms import UpdateProfile, BlogForm,CommentForm
 from .. import db,photos
 import markdown2  
@@ -73,7 +73,7 @@ def view_blog():
     return render_template('index.html',blog=blog)
 
 
-@main.route('/pitch/new/comment/<int:id>',methods = ['GET','POST'])
+@main.route('/blog/new/comment/<int:id>',methods = ['GET','POST'])
 def new_comment(id):
     form = CommentForm()
     if form.validate_on_submit():
@@ -81,3 +81,8 @@ def new_comment(id):
         db.session.commit()
         return redirect(url_for('.index'))
     return render_template('pitch.html',form = form)
+
+@main.route('/blog/new/comment/<int:id>/view')
+def view_comments(id):
+    comment = Comments.query.filter_by(blog_id= id)
+    return render_template('comment.html',comment = comment)
