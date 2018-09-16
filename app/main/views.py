@@ -12,9 +12,9 @@ def index():
     view root page function that returns the index page
     '''
     title = 'Home - Welcome to The Best Blog Site Worldwide You Think of It We help share It.'
-    blog = Blog.query.filter_by(id='1')
-
-    return render_template('index.html',title = title, blog = blog)
+    blog = Blog.query.filter_by(category='Personal_Blog')
+    blogone = Blog.query.filter_by(category='Institutional')
+    return render_template('index.html',title = title, blog = blog, blogone = blogone)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -61,16 +61,17 @@ def new_blog():
     form = BlogForm()
     if form.validate_on_submit():
         Blog_post = form.content.data
-        new_blog = Blog(Blog_post=Blog_post,user=current_user)
+        new_blog = Blog(Blog_post=Blog_post,category= form.category.data,user=current_user)
         new_blog.save_blog()
         return redirect(url_for('main.view_blog'))
     return render_template('blog.html',form = form)
 
 @main.route('/blog/new/view')
 def view_blog():
-    blog = Blog.query.filter_by(id)
+    blog = Blog.query.filter_by(category='Personal_Blog')
+    blogone = Blog.query.filter_by(category='Institutional')
 
-    return render_template('index.html',blog=blog)
+    return render_template('index.html',blog=blog,blogone=blogone)
 
 
 @main.route('/blog/new/comment/<int:id>',methods = ['GET','POST'])
@@ -80,7 +81,7 @@ def new_comment(id):
         new_comment = Comments(comment_name = form.comment_name.data,user=current_user, blog_id =id)
         db.session.commit()
         return redirect(url_for('.index'))
-    return render_template('pitch.html',form = form)
+    return render_template('blog.html',form = form)
 
 @main.route('/blog/new/comment/<int:id>/view')
 def view_comments(id):

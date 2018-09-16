@@ -7,13 +7,20 @@
 <div class="row">
     <div class="col-md-2"></div>
     {% for blog in blog %}
-<div class="jumbotron col-md-8">
-        <p>blog.user.id</p>
+    <div class="jumbotron col-md-8">
         <p>blog.Blog_post</p>
-        <p>blog.date_posted</p>
-      </div>
-      {% endfor %}
+    </div>
+    {% endfor %}
     <div class="col-md-2"></div>
 </div>
 
+<div class="row">
+        <div class="col-md-2"></div>
+        {% for blogone in blogone %}
+        <div class="jumbotron col-md-8">
+            <p>blog.Blog_post</p>
+        </div>
+          {% endfor %}
+        <div class="col-md-2"></div>
+</div>
 {% endblock %}
