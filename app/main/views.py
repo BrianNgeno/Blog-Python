@@ -70,7 +70,6 @@ def new_blog():
 def view_blog():
     blog = Blog.query.filter_by(category='Personal_Blog')
     blogone = Blog.query.filter_by(category='Institutional')
-
     return render_template('index.html',blog=blog,blogone=blogone)
 
 

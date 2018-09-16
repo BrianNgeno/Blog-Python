@@ -8,19 +8,21 @@
     <div class="col-md-2"></div>
     {% for blog in blog %}
     <div class="jumbotron col-md-8">
-        <p>blog.Blog_post</p>
+        <p>{{blog.Blog_post}}</p>
+        <p>{{blog.date_posted}}</p>
+        <p>{{blog}}</p>
     </div>
-    {% endfor %}
     <div class="col-md-2"></div>
+    {% endfor %}
 </div>
 
 <div class="row">
         <div class="col-md-2"></div>
         {% for blogone in blogone %}
         <div class="jumbotron col-md-8">
-            <p>blog.Blog_post</p>
-        </div>
-          {% endfor %}
+            <p>{{blogone.Blog_post}}</p>
+        </div> 
         <div class="col-md-2"></div>
+        {% endfor %}
 </div>
 {% endblock %}
