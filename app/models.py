@@ -78,3 +78,26 @@ class Blog(db.Model):
         '''
         blogs = Blog.query.order_by(Blog.date_posted.desc()).filter_by(id).all()
         return blogs
+
+class Comments(db.Model):
+    '''
+    comment class that create instance of comment
+    '''
+    __tablename__ = 'comment'
+
+    #add columns
+    id = db.Column(db. Integer, primary_key=True)
+    comment_name = db.Column(db.String(255))
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    blog_id = db.Column(db.Integer, db.ForeignKey("blogs.id"))
+
+    def save_comment(self):
+        '''
+        save the comment per blog
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_comments
