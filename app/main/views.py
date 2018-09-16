@@ -78,7 +78,7 @@ def new_comment(id):
     form = CommentForm()
     if form.validate_on_submit():
         new_comment = Comments(comment_name = form.comment_name.data,user=current_user, blog_id =id)
-        db.session.commit()
+        new_comment.save_comment
         return redirect(url_for('.index'))
     return render_template('blog.html',form = form)
 
