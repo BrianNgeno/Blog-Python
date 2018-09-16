@@ -45,3 +45,15 @@ class Role(db.Model):
     def __repr__(self):
         return f'User {self.name}'
 
+class Blog(db.Model):
+    '''
+    defines the table instance of our blog table
+    '''
+    __tablename__= 'blogs'
+
+    id = db.Column(db.Integer, Primary_key=True)
+    Blog_post = db.Column(db.String)
+    date_posted = db.Column(db.DateTime, default=datetime.now)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    
