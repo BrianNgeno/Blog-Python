@@ -1,5 +1,5 @@
 from flask import render_template,request,redirect,url_for,abort
-from ..models import User, Blog, Role
+from ..models import User, Blog, Role, Comments
 from . import main
 from flask_login import login_required
 from .forms import UpdateProfile, BlogForm
@@ -66,5 +66,5 @@ def new_blog():
 @main.route('/blog/new/view')
 def view_blog():
     blog = Blog.query.filter_by(id)
-    
+
     return render_template('index.html',blog=blog)

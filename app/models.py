@@ -16,7 +16,10 @@ class User(UserMixin,db.Model):
     password_secure = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
     blogs = db.relationship("Blog", backref="user", lazy="dynamic")
+    comment = db.relationship("Comments", backref="user", lazy ="dynamic")
     
+
+
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -100,4 +103,6 @@ class Comments(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_comments
+    def get_comments(self,id):
+        comment = Comments.query.order_by (Comments.date_posted.asend()).filter_by(blog_id=id).all()
+        return comment 
