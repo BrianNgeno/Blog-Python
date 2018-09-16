@@ -56,4 +56,11 @@ class Blog(db.Model):
     date_posted = db.Column(db.DateTime, default=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
+    def save_blog(self):
+        '''
+        function to save blog
+        '''
+        db.session.add(self)
+        db.session.commit()
+
     
