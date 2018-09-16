@@ -1,9 +1,10 @@
 from flask import render_template,request,redirect,url_for,abort
-from ..models import User
+from ..models import User, Blog, Role
 from . import main
 from flask_login import login_required
-from .forms import UpdateProfile
+from .forms import UpdateProfile, BlogForm
 from .. import db,photos
+import markdown2  
 
 @main.route('/')
 def index():
@@ -51,4 +52,18 @@ def update_pic(uname):
         path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
-    return redirect(url_for('main.profile',uname=uname))
+
+@main.route('/blog/new',methods=['GET','POST'])
+@login_required
+def new_blog():
+    form = BlogForm()
+    if form.validate_on_submit():
+        Blog_post = form.content.data
+        new_blog.save_blog()
+        return redirect(url_for('main.view_blog'))
+    return render_template('blog.html',form = form)
+
+@main.route('/blog/new/view')
+def view_blog():
+    blog = Blog.query.filter_by(id)
+    return render_template('index.html',blog=blog)

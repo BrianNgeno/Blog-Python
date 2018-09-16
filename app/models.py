@@ -15,7 +15,8 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     password_secure = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
-
+    blogs = db.relationship("Blog", backref="user", lazy="dynamic")
+    
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -51,7 +52,7 @@ class Blog(db.Model):
     '''
     __tablename__= 'blogs'
 
-    id = db.Column(db.Integer, Primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     Blog_post = db.Column(db.String)
     date_posted = db.Column(db.DateTime, default=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
