@@ -72,4 +72,8 @@ class Blog(db.Model):
 
     @classmethod
     def get_blogs(cls,id):
-        
+        '''
+        function that gets particular blogs when requested by date posted
+        '''
+        blogs = Blog.query.order_by(Blog.date_posted.desc()).filter_by(id).all()
+        return blogs
