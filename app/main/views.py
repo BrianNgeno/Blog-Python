@@ -61,6 +61,7 @@ def new_blog():
     form = BlogForm()
     if form.validate_on_submit():
         Blog_post = form.content.data
+        new_blog = Blog(Blog_post=Blog_post,user=current_user)
         new_blog.save_blog()
         return redirect(url_for('main.view_blog'))
     return render_template('blog.html',form = form)
@@ -72,11 +73,11 @@ def view_blog():
     return render_template('index.html',blog=blog)
 
 
-# @main.route('/pitch/new/comment/<int:id>',methods = ['GET','POST'])
-# def new_comment(id):
-#     form = CommentForm()
-#     if form.validate_on_submit():
-#         new_comment = Comments(comment_name = form.comment_name.data,user=current_user, blog_id =id)
-#         db.session.commit()
-#         return redirect(url_for('.index'))
-#     return render_template('pitch.html',form = form)
+@main.route('/pitch/new/comment/<int:id>',methods = ['GET','POST'])
+def new_comment(id):
+    form = CommentForm()
+    if form.validate_on_submit():
+        new_comment = Comments(comment_name = form.comment_name.data,user=current_user, blog_id =id)
+        db.session.commit()
+        return redirect(url_for('.index'))
+    return render_template('pitch.html',form = form)
