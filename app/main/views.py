@@ -66,4 +66,5 @@ def new_blog():
 @main.route('/blog/new/view')
 def view_blog():
     blog = Blog.query.filter_by(id)
+    
     return render_template('index.html',blog=blog)
