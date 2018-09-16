@@ -63,4 +63,13 @@ class Blog(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    
+    @classmethod
+    def clear_pitches(cls):
+        '''
+        function that clears all the blogs in the form after submission
+        '''
+        Blog.all_blogs.clear()
+
+    @classmethod
+    def get_blogs(cls,id):
+        
