@@ -17,7 +17,7 @@ class User(UserMixin,db.Model):
     password_hash = db.Column(db.String(255))
     blogs = db.relationship("Blog", backref="user", lazy="dynamic")
     comment = db.relationship("Comments", backref="user", lazy ="dynamic")
-    
+
 
 
     @property
@@ -68,7 +68,7 @@ class Blog(db.Model):
         db.session.commit()
 
     @classmethod
-    def clear_pitches(cls):
+    def clear_blogs(cls):
         '''
         function that clears all the blogs in the form after submission
         '''

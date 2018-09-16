@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort
 from ..models import User, Blog, Role, Comments
 from . import main
 from flask_login import login_required
-from .forms import UpdateProfile, BlogForm
+from .forms import UpdateProfile, BlogForm,CommentForm
 from .. import db,photos
 import markdown2  
 
@@ -12,8 +12,9 @@ def index():
     view root page function that returns the index page
     '''
     title = 'Home - Welcome to The Best Blog Site Worldwide You Think of It We help share It.'
+    blog = Blog.query.filter_by(id='1')
 
-    return render_template('index.html',title = title)
+    return render_template('index.html',title = title, blog = blog)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -52,7 +53,8 @@ def update_pic(uname):
         path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
-
+    return redirect(url_for('main.profile',uname=uname))
+    
 @main.route('/blog/new',methods=['GET','POST'])
 @login_required
 def new_blog():
@@ -68,3 +70,13 @@ def view_blog():
     blog = Blog.query.filter_by(id)
 
     return render_template('index.html',blog=blog)
+
+
+# @main.route('/pitch/new/comment/<int:id>',methods = ['GET','POST'])
+# def new_comment(id):
+#     form = CommentForm()
+#     if form.validate_on_submit():
+#         new_comment = Comments(comment_name = form.comment_name.data,user=current_user, blog_id =id)
+#         db.session.commit()
+#         return redirect(url_for('.index'))
+#     return render_template('pitch.html',form = form)

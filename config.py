@@ -4,7 +4,7 @@ class Config():
     '''
     parent class config
     '''
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://bknngeno:123@localhost/pitches'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://bknngeno:123@localhost/blog'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     #  email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -25,6 +25,7 @@ class ProdConfig(Config):
     pass
 
 class DevConfig(Config):
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://bknngeno:123@localhost/blog'
     DEBUG = True
 
 

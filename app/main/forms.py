@@ -13,6 +13,6 @@ class BlogForm(FlaskForm):
     content = TextAreaField('Your Blog.')
     submit = SubmitField('Submit')
 
-class Comments(FlaskForm):
+class CommentForm(FlaskForm):
     comment = TextAreaField('Blog comment', validators=[Required()])
     submit = SubmitField('Submit')
