@@ -13,7 +13,10 @@ class Config():
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SECRET_KEY=os.environ.get('SECRET_KEY') 
-  
+    # simple mde  configurations
+    SIMPLEMDE_JS_IIFE = True
+    SIMPLEMDE_USE_CDN = True
+    
     @staticmethod
     def init_app(app):
         pass
