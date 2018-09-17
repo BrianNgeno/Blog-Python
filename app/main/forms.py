@@ -14,6 +14,7 @@ class BlogForm(FlaskForm):
     category = SelectField('Category',choices=[('Institutional','Institutional'),('Personal_Blog','Personal_Blog')])
     submit = SubmitField('Submit')
 
+
 class CommentForm(FlaskForm):
     comment_name = TextAreaField('Blog comment', validators=[Required()])
     submit = SubmitField('Submit')
