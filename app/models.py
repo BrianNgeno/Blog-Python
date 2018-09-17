@@ -107,3 +107,9 @@ class Comments(db.Model):
     def get_comments(self,id):
         comment = Comments.query.order_by (Comments.date_posted.desc()).all()
         return comment 
+
+    @classmethod
+    def delete_comment(self,id):
+        comment = Comments.query.filter_by(id).first()
+        db.session.delete(self)
+        db.session.commit()
