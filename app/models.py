@@ -57,7 +57,7 @@ class Blog(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     Blog_post = db.Column(db.String)
-    date_posted = db.Column(db.DateTime, default=datetime.now)
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     category = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
@@ -80,7 +80,7 @@ class Blog(db.Model):
         '''
         function that gets particular blogs when requested by date posted
         '''
-        blogs = Blog.query.order_by(Blog.date_posted.desc()).filter_by(id).all()
+        blogs = Blog.query.order_by(Blog.date_posted.desc()).all()
         return blogs
 
 class Comments(db.Model):
@@ -105,5 +105,5 @@ class Comments(db.Model):
 
     @classmethod
     def get_comments(self,id):
-        comment = Comments.query.order_by (Comments.date_posted.asend()).filter_by(blog_id=id).all()
+        comment = Comments.query.order_by (Comments.date_posted.desc()).all()
         return comment 

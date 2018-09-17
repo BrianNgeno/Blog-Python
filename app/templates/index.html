@@ -9,7 +9,7 @@
     {% for blog in blog %}
     <div class="jumbotron col-md-8">
         <p>{{blog.Blog_post}}</p>
-        <p>{{blog.date_posted}}</p>
+        <p>{{blog.date_posted.strftime('%D %m %y')}}</p>
         <a href="/blog/new/comment/{{blog.id}}/view"><button class="btn btn-outline-warning btn-sm" style="color:white;" >view comments</a></button>
    <hr>
    <a href="/blog/new/comment/{{blog.id}}"> <button class="btn btn-outline-warning btn-sm"  style="color:white;">Add Comment</a></button>
@@ -24,10 +24,10 @@
         {% for blogone in blogone %}
         <div class="jumbotron col-md-8">
             <p>{{blogone.Blog_post}}</p>
-            <p>{{blog.date_posted}}</p>
-            <a href="/blog/new/comment/{{blog.id}}/view"><button class="btn btn-outline-warning btn-sm" style="background-color:white;" >view comments</a></button>
+            <p>{{blogone.date_posted.strftime('%D %m %y')}}</p>
+            <a href="/blog/new/comment/{{blog.id}}/view"><button class="btn btn-outline-warning btn-sm" style="color:white;" >view comments</a></button>
    <hr>
-   <a href="/blog/new/comment/{{blog.id}}"> <button class="btn btn-outline-warning btn-sm"  style="background-color:white;">Add Comment</a></button>
+   <a href="/blog/new/comment/{{blog.id}}"> <button class="btn btn-outline-warning btn-sm"  style="color:white;">Add Comment</a></button>
         </div> 
         <div class="col-md-2"></div>
         {% endfor %}

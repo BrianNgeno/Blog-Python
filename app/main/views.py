@@ -78,11 +78,11 @@ def new_comment(id):
     form = CommentForm()
     if form.validate_on_submit():
         new_comment = Comments(comment_name = form.comment_name.data,user=current_user, blog_id =id)
-        new_comment.save_comment
+        new_comment.save_comment()
         return redirect(url_for('.index'))
-    return render_template('blog.html',form = form)
+    return render_template('new_comment.html',form = form)
 
 @main.route('/blog/new/comment/<int:id>/view')
 def view_comments(id):
-    comment = Comments.query.filter_by(blog_id= id)
+    comment = Comments.query.filter_by(blog_id = id)
     return render_template('comment.html',comment = comment)
