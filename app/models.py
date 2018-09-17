@@ -129,3 +129,9 @@ class Subscriber(UserMixin, db.Model):
     @classmethod
     def get_subscribers(cls,id):
         return Subscriber.query.all()
+
+    def __repr__(self):
+       return f'User {self.email}'
+
+
+

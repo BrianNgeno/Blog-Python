@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort
 from ..models import User, Blog, Role, Comments
 from . import main
 from flask_login import login_required,current_user
-from .forms import UpdateProfile, BlogForm,CommentForm
+from .forms import UpdateProfile, BlogForm,CommentForm,SubscriberForm
 from .. import db,photos
 import markdown2  
 
@@ -97,3 +97,18 @@ def delete_comment(id):
         db.session.commit()
         return redirect(url_for('.index'))
     return render_template('comment.html')
+
+
+
+#routing for subscribers
+@main.route('/subscribe', methods=['GET','POST'])
+def subscriber():
+    subscriber_form=SubscriberForm()
+    if subscriber_form.validate_on_submit():
+        subscriber= Subscriber(email=subscriber_form.email.data,title = subscriber_form.title.data)
+        db.session.add(subscriber)
+        db.session.commit()
+        mail_message("Hey Welcome To My Blog ","email/welcome_subscriber",subscriber.email,subscriber=subscriber)
+        subscriber = Blog.query.all()
+        blog = Blog.query.all()
+    return render_template('subscribe.html',subscriber=subscriber,subscriber_form=subscriber_form,blog=blog)
