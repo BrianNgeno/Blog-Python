@@ -88,6 +88,7 @@ def view_comments(id):
     return render_template('comment.html',comment = comment)
 
 @main.route('/delete_comment/<int:id>')
+@login_required
 def delete_comment(id):
     if current_user.is_authenticated:
         comment = Comments.query.filter_by(id = id).first()
