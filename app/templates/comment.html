@@ -7,7 +7,7 @@
   <P>{{comment.comment_name}}</P>
   <p>{{comment.date_posted.strftime('%D %m %y')}}</p>
   <!-- <p>Blog-Id: {{comment.blog_id}}</p> -->
- 
+  <a href="/delete-comment/{{comment.id}}"> <button class="btn btn-outline-danger btn-sm"  style="color:white;">Delete Comment</a></button>
 </div>
 
 <div class="col-md-2"></div>

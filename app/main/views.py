@@ -86,3 +86,13 @@ def new_comment(id):
 def view_comments(id):
     comment = Comments.query.filter_by(blog_id = id)
     return render_template('comment.html',comment = comment)
+
+@main.route('/delete-comment/<int:id>')
+def delete_comment(id):
+    if current_user.is_authenticated:
+        comment = Comments.query.filter_by(id = id)
+        # comment.delete_comment()
+        db.session.delete(comment)
+        db.session.commit()
+        return redirect(url_for('.index'))
+    return render_template('comment.html')
